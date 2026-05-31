@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pranshi's Creative Universe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-pink: #ff85a2;
+            --soft-pink: #fbc4d0;
+            --light-pink-bg: #fff0f3;
+            --dark-pink: #ff477e;
+            --pure-white: #ffffff;
+            --text-color: #4a4a4a;
+            --glass-bg: rgba(255, 255, 255, 0.75);
+            --shadow: 0 8px 32px 0 rgba(255, 133, 162, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light-pink-bg);
+            color: var(--text-color);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--light-pink-bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--soft-pink);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-pink);
+        }
+
+        /* Floating Sparkles Animation in Background */
+        .bg-bubbles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .bg-bubbles li {
+            position: absolute;
+            list-style: none;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.7);
+            bottom: -150px;
+            border-radius: 50%;
+            animation: floatUp 25s infinite linear;
+        }
+        .bg-bubbles li:nth-child(1) { left: 10%; width: 40px; height: 40px; animation-delay: 0s; }
+        .bg-bubbles li:nth-child(2) { left: 20%; animation-delay: 2s; animation-duration: 12s; }
+        .bg-bubbles li:nth-child(3) { left: 25%; animation-delay: 4s; }
+        .bg-bubbles li:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-duration: 22s; background-color: rgba(255, 133, 162, 0.2); }
+        .bg-bubbles li:nth-child(5) { left: 70%; }
+        .bg-bubbles li:nth-child(6) { left: 80%; width: 30px; height: 30px; animation-delay: 3s; }
+        .bg-bubbles li:nth-child(7) { left: 32%; animation-delay: 7s; }
+        .bg-bubbles li:nth-child(8) { left: 55%; animation-delay: 15s; animation-duration: 40s; }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 50%; }
+            100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 20%; }
+        }
+
+        /* Navigation Bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(255, 133, 162, 0.1);
+        }
+
+        .logo {
+            font-family: 'Comfortaa', cursive;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-pink);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--dark-pink);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--dark-pink);
+            transition: 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 120px 10% 60px 10%;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 550px;
+            animation: fadeInLeft 1.2s ease forwards;
+        }
+
+        .tagline {
+            display: inline-block;
+            background: var(--pure-white);
+            color: var(--dark-pink);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--soft-pink);
+        }
+
+        .hero-content h1 {
+            font-family: 'Comfortaa', cursive;
+            font-size: 3.5rem;
+            color: var(--text-color);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 span {
+            color: var(--dark-pink);
+            position: relative;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            color: #666;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-pink), var(--dark-pink));
+            color: var(--pure-white);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 26px rgba(255, 71, 126, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--pure-white);
+            color: var(--dark-pink);
+            border: 2px solid var(--soft-pink);
+        }
+
+        .btn-secondary:hover {
+            background: var(--soft-pink);
+            color: var(--pure-white);
+            transform: translateY(-5px);
+        }
+
+        .hero-image-container {
+            position: relative;
+            animation: fadeInRight 1.2s ease forwards;
+        }
+
+        .profile-card {
+            background: var(--pure-white);
+            padding: 30px;
+            border-radius: 30px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            position: relative;
+            border: 4px solid var(--pure-white);
+            outline: 2px dashed var(--soft-pink);
+            outline-offset: -12px;
+        }
+
+        .avatar-frame {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--soft-pink), var(--primary-pink));
+            margin: 0 auto 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: white;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+            animation: pulse 3s infinite ease-in-out;
+        }
+
+        /* Sections General Layout */
+        section {
+            padding: 100px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Comfortaa', cursive;
+            font-size: 2.5rem;
+            color: var(--text-color);
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title span {
+            color: var(--dark-pink);
+        }
+
+        .section-title::after {
+            content: '🌸';
+            display: block;
+            font-size: 1.5rem;
+            margin-top: 10px;
+        }
+
+        /* About & Info Section Cards */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .info-card {
+            background: var(--pure-white);
+            padding: 35px 25px;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: 0.3s ease;
+            border: 1px solid rgba(255, 133, 162, 0.1);
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-pink);
+        }
+
+        .info-card .icon-box {
+            width: 70px;
+            height: 70px;
+            background: var(--light-pink-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px auto;
+            font-size: 1.8rem;
+            color: var(--dark-pink);
+        }
+
+        .info-card h3 {
+            font-family: 'Comfortaa', cursive;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        /* Portfolio / Works Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+        }
+
+        .project-card {
+            background: var(--pure-white);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(255, 133, 162, 0.1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-12px) scale(1.02);
+        }
+
+        .project-banner {
+            height: 180px;
+            background: linear-gradient(135deg, var(--soft-pink), var(--primary-pink));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            position: relative;
+        }
+
+        .project-banner::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: var(--pure-white);
+            clip-path: polygon(0 100%, 100% 100%, 100% 0);
+        }
+
+        .project-info {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-tag {
+            align-self: flex-start;
+            background: var(--light-pink-bg);
+            color: var(--dark-pink);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 50px;
+            margin-bottom: 12px;
+        }
+
+        .project-info h3 {
+            font-family: 'Comfortaa', cursive;
+            margin-bottom: 10px;
+            font-size: 1.25rem;
+        }
+
+        .project-info p {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .project-links {
+            margin-top: auto;
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-links a {
+            text-decoration: none;
+            color: var(--dark-pink);
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(to bottom, var(--light-pink-bg), var(--pure-white));
+            text-align: center;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--pure-white);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--soft-pink);
+        }
+
+        .contact p {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .social-row {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .social-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--light-pink-bg);
+            color: var(--dark-pink);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 10px rgba(255, 133, 162, 0.1);
+        }
+
+        .social-icon:hover {
+            background: var(--dark-pink);
+            color: var(--pure-white);
+            transform: scale(1.15) rotate(10deg);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: var(--pure-white);
+            font-size: 0.9rem;
+            color: #888;
+            border-top: 1px solid var(--soft-pink);
+        }
+
+        /* Animations */
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 133, 162, 0.4); }
+            70% { transform: scale(1.03); box-shadow: 0 0 0 15px rgba(255, 133, 162, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 133, 162, 0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 50px;
+                padding-top: 140px;
+            }
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            .cta-buttons {
+                justify-content: center;
+            }
+            .nav-links {
+                display: none; /* Can be expanded into a burger menu later */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <ul class="bg-bubbles">
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+    </ul>
+
+    <nav>
+        <a href="#" class="logo"><i class="fa-solid fraction">🌸</i> Pranshi.dev</a>
+        <ul class="nav-links">
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#portfolio">My Projects</a></li>
+            <li><a href="#contact">Say Hello</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="tagline">✨ Aspiring Tech Wizard & Creator</div>
+            <h1>Hi, I am <span>Pranshi</span>!</h1>
+            <p>Welcome to my digital scrapbook! I am a 13-year-old student currently rocking Class 8th. When I'm not finishing up homework, I code sleek websites, design custom graphics, and experiment with code to build fun projects for the web.</p>
+            <div class="cta-buttons">
+                <a href="#portfolio" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+        <div class="hero-image-container">
+            <div class="profile-card">
+                <div class="avatar-frame">
+                    <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Pranshi&backgroundColor=fbc4d0" alt="Pranshi Avatar" style="width: 100%; height: 100%; object-fit: contain;">
+                </div>
+                <h2 style="font-family: 'Comfortaa'; font-size: 1.4rem;">Pranshi</h2>
+                <p style="color: var(--dark-pink); font-size: 0.9rem; font-weight: 600; margin-top: 5px;">@SageGirlCode</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">All About <span>Me</span></h2>
+        <div class="info-grid">
+            <div class="info-card">
+                <div class="icon-box"><i class="fa-solid fa-graduation-cap"></i></div>
+                <h3>Class 8th Student</h3>
+                <p>Balancing algebraic equations by day and writing creative markup strings by night. Constantly learning new technologies.</p>
+            </div>
+            <div class="info-card">
+                <div class="icon-box"><i class="fa-solid fa-code"></i></div>
+                <h3>My Stack</h3>
+                <p>Enjoying front-end playground environments with HTML5, CSS3 animations, JavaScript interactive assets, and Git workflows.</p>
+            </div>
+            <div class="info-card">
+                <div class="icon-box"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                <h3>Interests</h3>
+                <p>Big fan of pixel art compilation, UI design styling, writing imaginative short stories, and exploring open-source communities.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" style="background-color: rgba(255,255,255,0.4);">
+        <h2 class="section-title">My Creative <span>Projects</span></h2>
+        <div class="portfolio-grid">
+            <div class="project-card">
+                <div class="project-banner">🎨</div>
+                <div class="project-info">
+                    <span class="project-tag">Web Design</span>
+                    <h3>To-Do Fairy App</h3>
+                    <p>A beautiful, pink-themed productivity list application made to schedule school assignments and micro-goals flawlessly.</p>
+                    <div class="project-links">
+                        <a href="#" target="_blank"><i class="fa-brands fa-github"></i> Source</a>
+                        <a href="#" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-banner">👾</div>
+                <div class="project-info">
+                    <span class="project-tag">JavaScript</span>
+                    <h3>Pixel Guessing Game</h3>
+                    <p>An interactive browser mini-game developed using native canvas components. Fun retro aesthetic loops built step-by-step.</p>
+                    <div class="project-links">
+                        <a href="#" target="_blank"><i class="fa-brands fa-github"></i> Source</a>
+                        <a href="#" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-banner">📚</div>
+                <div class="project-info">
+                    <span class="project-tag">HTML / CSS</span>
+                    <h3>Study Zen Hub</h3>
+                    <p>A dashboard displaying clean pomodoro counters alongside embedded chill lofi background beats for focused homework sessions.</p>
+                    <div class="project-links">
+                        <a href="#" target="_blank"><i class="fa-brands fa-github"></i> Source</a>
+                        <a href="#" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2 class="section-title">Let's <span>Connect</span></h2>
+        <div class="contact-container">
+            <p>I am always looking to collaborate on cute web layouts or practice coding logic! Feel free to drop by my GitHub profile or say hello via email.</p>
+            <div class="social-row">
+                <a href="https://github.com" target="_blank" class="social-icon" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="mailto:pranshi@example.com" class="social-icon" title="Email Me"><i class="fa-solid fa-envelope"></i></a>
+                <a href="#" class="social-icon" title="Discord Channel"><i class="fa-brands fa-discord"></i></a>
+            </div>
+            <a href="mailto:pranshi@example.com" class="btn btn-primary">Drop a Mail 💌</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>Made with 💖 and code by Pranshi &copy; 2026. Hosted safely on GitHub Pages.</p>
+    </footer>
+
+</body>
+</html>
